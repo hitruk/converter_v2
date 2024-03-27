@@ -40,7 +40,7 @@ class View(ttk.Frame):
         self.label = ttk.Label(self, text='Converter')
         self.label.pack()
 
-        self.set_frame = SetFrame(app)
+        self.set_frame = SetFrame(container)
         self.set_frame.rb_1['command'] = self.switch_win
         self.set_frame.rb_2['command'] = self.switch_win
 
@@ -93,12 +93,12 @@ class App(tk.Tk):
         self.geometry('300x400')
         #self.resizable(False, False)
 
-
+        view = View(self)
 
 
 if __name__ == '__main__':
     app = App()
-    view = View(app)
+    #view = View(app)
     # win_first = WinFirst(view)
     # win_second = WinSecond(view)
     # set_frame = SetFrame(app)
