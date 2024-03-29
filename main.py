@@ -1,6 +1,8 @@
 
-# 1. switch frame
+# 1. Switch frame
 # 2. Создать два фрейма WinFirst, WinSecond которые будут переключаться в виджете LabelFrame
+# 3. Настроить переключение WinFirst, WinSecond в классе View
+# 4. MVC модель
 
 import tkinter as tk
 from tkinter.constants import *
@@ -29,7 +31,6 @@ class Model():
     def km_to_mi(self):
         mi = self._value / 1.609344
         return mi
-
 
 class WinFirst(ttk.Frame):
     def __init__(self, container):
@@ -77,8 +78,6 @@ class WinFirst(ttk.Frame):
 
     def set_full_result(self, x, text):
         self.full_result['text'] = f'{x} km = {text} mi' 
- 
-
 
 class WinSecond(ttk.Frame):
     def __init__(self, container):
@@ -152,7 +151,6 @@ class SetFrame(ttk.LabelFrame):
         )
         self.rb_2.pack(**options)
 
-
 class View(ttk.Frame):
     def __init__(self, container):
         super().__init__(container)
@@ -175,7 +173,6 @@ class View(ttk.Frame):
         self.list_win.append(win_second)
         self.list_win[1].forget()
 
-
     def switch_win(self):
         if self.set_frame.rb_value.get():
             self.list_win[1].forget()
@@ -183,7 +180,6 @@ class View(ttk.Frame):
         else:
             self.list_win[0].forget()
             self.list_win[1].pack(padx=2, pady=2, fill=BOTH, expand=True)
-            
 
 class Controller:
     def __init__(self, view, model):
@@ -204,7 +200,6 @@ class Controller:
 
         except TypeError as error:
             print(error)
-       
 
 class App(tk.Tk):
     def __init__(self):
@@ -225,5 +220,3 @@ class App(tk.Tk):
 if __name__ == '__main__':
     app = App()
     app.mainloop()
-    #win_first = WinFirst()
-    #win_first.controller()
